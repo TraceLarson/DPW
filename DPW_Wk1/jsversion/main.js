@@ -34,8 +34,9 @@ class Car extends Vehicle{
 		super(name,range,capacity)
 		this.driver = new Driver(driver)
 	}
-	getDriver(){
-    	console.log(`CAR the driver's name is ${this.driver.getDriverName()}`)
+	getDriverName(){
+    	console.log(`the driver's name is ${this.driver.getDriverName()}`)
+		return this.driver.getDriverName()
   }
 }
 
@@ -63,19 +64,41 @@ class Driver{
 	}
 }
 
-
-
 (function(){
-	let name = 'Camaro'
-	if(name == 'optimus' || name == 'bumblebee') {
-    let obj1 = new Transformer(name, 500, 40, 'Trace')
-		obj1.getMpg()
-		console.log(Vehicle.team)
+	//Create boolean to hold done option
+	let done = false
+	//Create empty list to hold objects
+	let carList = []
+	//Set Static Variable
+	Vehicle.team = document.getElementById('team-input').value
+	//Set object parameters
+	let name = document.getElementById('vehicle-name-input').value
+	let range = parseFloat(document.getElementById('range-input').value)
+	let capacity = parseFloat(document.getElementById('capacity-input').value)
+	let driver = document.getElementById('driver-input').value
+
+	for(let i = 0; i < 3; i++) {
+		if(done)
+			break
+		else {
+			checkSpecial(i)
+    }
   }
-	else {
-     let obj1 = new Car('Corvette', 500, 30, 'Trace')
-		obj1.getMpg()
-    console.log(Vehicle.team)
+  function displayInfp(){
+		console.log(carList)
+	}
+
+  function checkSpecial(i) {
+    //Conditional to check for special class instantiation
+    if (name == 'optimus' || name == 'bumblebee') {
+      let obj[i] = new Transformer(name, range, capacity, driver)
+			carList.push(obj[i])
+    }
+    else {
+      let obj[i] = new Car(name, range, capacity, driver)
+      carList.push(obj[i])
+    }
   }
+
 
 })();
