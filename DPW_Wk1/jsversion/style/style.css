@@ -1,0 +1,16 @@
+body{
+    font-family: Arial, Verdana, sans-serif;
+}
+
+.inputSection{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-auto-rows: minmax(300px, auto);
+}
+form{
+    /*grid-column: 5/5;*/
+
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-rows: 20px;
+}

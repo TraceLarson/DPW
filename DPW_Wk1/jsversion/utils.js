@@ -3,6 +3,7 @@ class Utils{
     console.log('Accessing Utility Class')
   }
   static calcMpg(range, fuelCapacity){
-    return range/fuelCapacity
+    let mpg = range/fuelCapacity
+    return mpg.toFixed(1)
   }
 }

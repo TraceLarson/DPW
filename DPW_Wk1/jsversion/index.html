@@ -26,12 +26,20 @@ March 30, 2018
                 <label for="capacity-input">Fuel Capacity (in gal.):</label>
                 <input type="text" name="capacity-input" id="capacity-input" placeholder="ie 26"/>
             </div>
-            <button type="button">Add</button>
-            <button type="submit">Done</button>
+            <button id="add-object-button" type="button">Add</button>
+            <button id="display-info-button" type="submit">Done</button>
         </form>
     </section>
     <section class="displaySection">
-        <h1>This is where we display the info</h1>
+        <table id="car-list">
+            <tr>
+                <th>Team</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>MPG</th>
+            </tr>
+        </table>
+        <!--<ul id="car-list"></ul>-->
     </section>
 
     <script type="text/javascript" src="utils.js"></script>
