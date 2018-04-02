@@ -28,6 +28,7 @@ class Vehicle {
     return mpg
   }
 }
+
 //Static variable
 Vehicle.team = 'Autobots'
 
@@ -38,6 +39,7 @@ class Car extends Vehicle {
     super(name, range, capacity)
     this.driver = new Driver(driver)
   }
+
   //get the driver's name
   getDriverName() {
     console.log(`the driver's name is ${this.driver.getDriverName()}`)
@@ -81,62 +83,65 @@ class Driver {
   }
 }
 
-(function() {
-  //Create variables for buttons
-  let addObjectButton = document.getElementById('add-object-button')
-  let displayInfoButton = document.getElementById('display-info-button')
-  //Create empty list to hold objects
-  let carList = []
-  //Set Static Variable
+//Create variables for buttons
+let addObjectButton = document.getElementById('add-object-button')
+let displayInfoButton = document.getElementById('display-info-button')
+//Create empty list to hold objects
+let carList = []
+//Set Static Variable
+Vehicle.team = document.getElementById('team-input').value
+//Set object parameters
+let range = parseFloat(document.getElementById('range-input').value)
+let capacity = parseFloat(document.getElementById('capacity-input').value)
+let driver = document.getElementById('driver-input').value
+let cars = document.getElementById('car-list')
+
+let i = 0
+//Event listeners
+addObjectButton.addEventListener('click', (e) => {
+  //Reset Static Variable in case it has changed
   Vehicle.team = document.getElementById('team-input').value
-  //Set object parameters
-  let range = parseFloat(document.getElementById('range-input').value)
-  let capacity = parseFloat(document.getElementById('capacity-input').value)
-  let driver = document.getElementById('driver-input').value
-  let cars = document.getElementById('car-list')
-
-  let i = 0
-  //Event listeners
-  addObjectButton.addEventListener('click', (e) => {
-    let name = document.getElementById('vehicle-name-input').value
-    if(i < 3) {
-      checkSpecial(name)
-      e.target.parentNode.reset()
-      i++
-    }else
-      alert("The list is full")
-  })
-  displayInfoButton.addEventListener('click', (e) => {
-    displayInfo(e)
-  })
-
-  //function to display the information
-  function displayInfo(e) {
-    e.preventDefault()
-    console.log(carList)
-
-    //get all elements with class of data and remove them so they can be re-added
-    let dataElements = document.getElementsByClassName('data')
-    while(dataElements.length > 0){
-      dataElements[0].parentNode.removeChild(dataElements[0])
-    }
-    //loop through cars list and add object data to list item element
-    carList.forEach((car) => {
-      cars.innerHTML += `<tr class="data" ><td> ${Vehicle.team} </td><td> ${car.getName()} </td><td> 
-${car.getDriverName()} </td><td>\n' +
-          '${car.getMpg()}</td></tr>`
-    })
+  // get current name element to check for special class instantiation
+  let name = document.getElementById('vehicle-name-input').value
+  if (i < 3) {
+    checkSpecial(name)
+    e.target.parentNode.reset()
+    i++
   }
-  // function to check if special class should be instantiated
-  function checkSpecial(name) {
-    //Conditional to check for special class instantiation
-    if (name == 'optimus' || name == 'bumblebee') {
-      carList[i] = new Transformer(name, range, capacity, driver)
-    }
-    else {
-      carList[i] = new Car(name, range, capacity, driver)
-    }
-    console.log(`Car List ${carList}`)
-  }
+  else
+    alert('The list is full')
+})
+displayInfoButton.addEventListener('click', (e) => {
+  //Reset Static Variable in case it has changed
+  Vehicle.team = document.getElementById('team-input').value
+  displayInfo(e)
+})
 
-})()
+//function to display the information
+function displayInfo(e) {
+  e.preventDefault()
+  console.log(carList)
+
+  //get all elements with class of data and remove them so they can be re-added
+  let dataElements = document.getElementsByClassName('data')
+  while (dataElements.length > 0) {
+    dataElements[0].parentNode.removeChild(dataElements[0])
+  }
+  //loop through cars list and add object data to list item element
+  carList.forEach((car) => {
+    cars.innerHTML += `<tr class="data" ><td> ${Vehicle.team} </td><td> ${car.getName()} </td><td>${car.getDriverName()} </td><td>${car.getMpg()}</td></tr>`
+  })
+}
+
+// function to check if special class should be instantiated
+function checkSpecial(name) {
+  //Conditional to check for special class instantiation
+  if (name == 'optimus' || name == 'bumblebee') {
+    carList[i] = new Transformer(name, range, capacity, driver)
+  }
+  else {
+    carList[i] = new Car(name, range, capacity, driver)
+  }
+  console.log(`Car List ${carList}`)
+}
+

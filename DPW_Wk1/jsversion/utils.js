@@ -4,6 +4,6 @@ class Utils{
   }
   static calcMpg(range, fuelCapacity){
     let mpg = range/fuelCapacity
-    return mpg.toFixed(1)
+    return parseFloat(mpg).toFixed(1)
   }
 }
