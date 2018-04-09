@@ -2,6 +2,48 @@ window.addEventListener('load', function () {
   console.log("page loaded");
   //instantiate singleton
   var myAssignment = AssignPrototype.getInstance();
+
+  //Create variables for buttons
+  var addObjectButton = document.getElementById('add-object-button');
+  var displayInfoButton = document.getElementById('display-info-button');
+
+  // //Create empty list to hold objects
+  // var carList = [];
+  Vehicle.prototype.team = '';
+
+  var i = 0;
+  //event listeners
+  addObjectButton.addEventListener('click', function(e){
+    //Reset Static Variable in case it has changed
+    Vehicle.prototype.team = document.getElementById('team-input').value;
+    //Set object parameters
+    var range = parseFloat(document.getElementById('range-input').value);
+    var capacity = parseFloat(document.getElementById('capacity-input').value);
+    var driver = document.getElementById('driver-input').value;
+    // get current name element to check for special class instantiation
+    var name = document.getElementById('vehicle-name-input').value;
+    if (i < 3) {
+      myAssignment.checkSpecial(name, range, capacity, driver,i);
+      i++;
+      //reset non static form fields.
+      document.getElementById('vehicle-name-input').value = document.getElementById('vehicle-name-input').defaultValue;
+      document.getElementById('range-input').value = document.getElementById('range-input').defaultValue;
+      document.getElementById('capacity-input').value = document.getElementById('capacity-input').defaultValue;
+      document.getElementById('driver-input').value = document.getElementById('driver-input').defaultValue;
+    }
+    else
+      alert('The list is full');
+    // e.target.parentNode.reset()
+
+  })
+
+  displayInfoButton.addEventListener('click', function(e){
+    //Reset Static Variable in case it has changed
+    Vehicle.prototype.team = document.getElementById('team-input').value;
+    myAssignment.displayInfo(e);
+  })
+
+
 });
 
 //////////////////////////////////////////////////////////////Singleton
@@ -9,57 +51,10 @@ class AssignPrototype {
   constructor(){
     console.log('Singleton created.');
     //start code here
-    //Create variables for buttons
-    var addObjectButton = document.getElementById('add-object-button');
-    var displayInfoButton = document.getElementById('display-info-button');
-    //Create empty list to hold objects
     var carList = [];
-    //Set Static Variable
-    Vehicle.prototype.team = document.getElementById('team-input').value;
-    //Set object parameters
-    var range = parseFloat(document.getElementById('range-input').value)
-    var capacity = parseFloat(document.getElementById('capacity-input').value)
-    var driver = document.getElementById('driver-input').value
-    var cars = document.getElementById('car-list')
-
-    var i = 0
-    //Event listeners
-    addObjectButton.addEventListener('click', function(e){
-      //Reset Static Variable in case it has changed
-      Vehicle.prototype.team = document.getElementById('team-input').value
-      // get current name element to check for special class instantiation
-      let name = document.getElementById('vehicle-name-input').value
-      if (i < 3) {
-        checkSpecial(name)
-        e.target.parentNode.reset()
-        i++
-      }
-      else
-        alert('The list is full')
-    })
-    displayInfoButton.addEventListener('click', function(e){
-      //Reset Static Variable in case it has changed
-      Vehicle.prototype.team = document.getElementById('team-input').value
-      displayInfo(e)
-    })
-
-    function displayInfo(e) {
-      e.preventDefault()
-      console.log(carList)
-
-      //get all elements with class of data and remove them so they can be re-added
-      let dataElements = document.getElementsByClassName('data')
-      while (dataElements.length > 0) {
-        dataElements[0].parentNode.removeChild(dataElements[0])
-      }
-      //loop through cars list and add object data to list item element
-      carList.forEach((car) => {
-        cars.innerHTML += `<tr class="data" ><td> ${Vehicle.team} </td><td> ${car.getName()} </td><td>${car.getDriverName()} </td><td>${car.getMpg()}</td></tr>`
-      })
-    }
 
     // function to check if special class should be instantiated
-    function checkSpecial(name) {
+    this.checkSpecial = function(name, range, capacity, driver, i) {
       //Conditional to check for special class instantiation
       if (name == 'optimus' || name == 'bumblebee') {
         carList[i] = new Transformer(name, range, capacity, driver)
@@ -70,6 +65,23 @@ class AssignPrototype {
       console.log(`Car List ${carList}`)
     }
 
+    //Display the information
+    this.displayInfo = function(e) {
+      e.preventDefault()
+      console.log(carList)
+      //get all elements with class of data and remove them so they can be re-added
+      var cars = document.getElementById('car-list')
+      var dataElements = document.getElementsByClassName('data')
+
+      while (dataElements.length > 0) {
+        dataElements[0].parentNode.removeChild(dataElements[0])
+      }
+      //loop through cars list and add object data to list item element
+      carList.forEach((car) => {
+        cars.innerHTML += `<tr class="data" ><td> ${Vehicle.prototype.team} </td><td> ${car.getName()} </td><td>${car.getDriverName()} </td><td>${car.getMpg()}</td></tr>`
+      })
+    }
+
   }
   static getInstance(){
     if(!AssignPrototype._instance){
@@ -78,7 +90,6 @@ class AssignPrototype {
     }
     else{
       throw "Tried to create second singleton";
-
     }
   };
 }
@@ -167,5 +178,3 @@ var Driver = (function(){
 
   return Driver;
 })();
-
-
