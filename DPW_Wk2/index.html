@@ -1,0 +1,48 @@
+<!--
+Trace Larson
+DPW Section 01
+April 7, 2018
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style/style.css"/>
+
+    <title>Singleton and Prototype Design Patterns in ES5</title>
+</head>
+<body>
+    <section class="inputSection">
+        <form>
+            <label for="team-input">Racing Team Name:</label>
+            <input type="text" name="team-input" id="team-input" placeholder="(STATIC)"/>
+            <div class="vehicleGroup">
+                <label for="vehicle-name-input">Vehicle Name:</label>
+                <input type="text" name="vehicle-name-input" id="vehicle-name-input" placeholder='ie "Red Rocket"'/>
+                <label for="driver-input">Current Driver:</label>
+                <input type="text" name="driver-input" id="driver-input" placeholder="Driver's Name"/>
+                <label for="range-input">Range (in mi.):</label>
+                <input type="text" name="range-input" id="range-input" placeholder="ie 500"/>
+                <label for="capacity-input">Fuel Capacity (in gal.):</label>
+                <input type="text" name="capacity-input" id="capacity-input" placeholder="ie 26"/>
+            </div>
+            <button id="add-object-button" type="button">Add</button>
+            <button id="display-info-button" type="submit">Done</button>
+        </form>
+    </section>
+    <section class="displaySection">
+        <table id="car-list">
+            <tr>
+                <th>Team</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>MPG</th>
+            </tr>
+        </table>
+        <!--<ul id="car-list"></ul>-->
+    </section>
+
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
