@@ -3,15 +3,18 @@ window.addEventListener('load', function () {
   //instantiate singleton
   var myAssignment = AssignPrototype.getInstance();
 
+
   //Create variables for buttons
   var addObjectButton = document.getElementById('add-object-button');
   var displayInfoButton = document.getElementById('display-info-button');
 
-  // //Create empty list to hold objects
-  // var carList = [];
+
+  //initialize static variable
   Vehicle.prototype.team = '';
 
   var i = 0;
+
+
   //event listeners
   addObjectButton.addEventListener('click', function(e){
     //Reset Static Variable in case it has changed
@@ -34,8 +37,8 @@ window.addEventListener('load', function () {
     else
       alert('The list is full');
     // e.target.parentNode.reset()
-
   })
+
 
   displayInfoButton.addEventListener('click', function(e){
     //Reset Static Variable in case it has changed
@@ -53,6 +56,7 @@ class AssignPrototype {
     //start code here
     var carList = [];
 
+
     // function to check if special class should be instantiated
     this.checkSpecial = function(name, range, capacity, driver, i) {
       //Conditional to check for special class instantiation
@@ -64,6 +68,7 @@ class AssignPrototype {
       }
       console.log(`Car List ${carList}`)
     }
+
 
     //Display the information
     this.displayInfo = function(e) {
@@ -82,7 +87,10 @@ class AssignPrototype {
       })
     }
 
+
   }
+
+
   static getInstance(){
     if(!AssignPrototype._instance){
       AssignPrototype._instance = new AssignPrototype();
@@ -122,6 +130,7 @@ var Vehicle = (function (){
   return Vehicle;
 })();
 
+
 var Car = (function(){
   Car.prototype = Object.create(Vehicle.prototype);
   function Car(name, range, capacity, driver){
@@ -136,6 +145,7 @@ var Car = (function(){
 
   return Car;
 })();
+
 
 var Transformer = (function(){
   Transformer.prototype = Object.create(Vehicle.prototype);
@@ -165,6 +175,7 @@ var Transformer = (function(){
 
   return Transformer;
 })();
+
 
 var Driver = (function(){
   function Driver(driverName){
