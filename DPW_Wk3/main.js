@@ -36,6 +36,7 @@ class Controller{
     console.log('Controller Created');
     this.model = new Model();
     this.view = new View();
+
     //code to retrieve data
     document.getElementById('submit-button').addEventListener('click', (e)=>{
       e.preventDefault();
@@ -59,7 +60,7 @@ class Model{
   //code to do something with the data received using the utils class
   getDogYears(dog){
     console.log('calculatig dog years');
-    var dogAge = Utils.calcDogYears(dog.dob, dog.size)
+    var dogAge = Utils.calcDogYears(dog.dob, dog.size);
     console.log('Your dog is ' + dogAge + ' years old');
     return dogAge;
   }
@@ -71,9 +72,8 @@ class View{
     //code to render the data in HTML
 
   }
-  showData(data, product){
-    var dataDisplay = `<h3>Dog Name ${data.name}</h3><p>Size: ${data.size}</p><p>DOB: ${data.dob}</p><p>Your Dog's age in dog years is ${product}</p>`
-
+  showData(data, product, url){
+    var dataDisplay = `<h3>Dog Name: ${data.name}</h3><p>Size: ${data.size}</p><p>DOB:${data.dob}</p><p>Your Dog's age in dog years is ${product}</p>`
     document.getElementById('dog-display').innerHTML = dataDisplay;
   }
 }

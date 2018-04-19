@@ -3,11 +3,13 @@ class Utils {
     console.log('Accessing Utility Class')
   }
 
+  //Caclulate Miles per Gallon
   static calcMpg(range, fuelCapacity) {
     var mpg = range / fuelCapacity
     return parseFloat(mpg).toFixed(1)
   }
 
+  //Calculate Dog years from Human years
   static calcDogYears(dob, size) {
     // This function takes in a string of format mm-dd-yyyy for the date of birth of a dog
     // and a string of "small" "medium" or "large. Reasoning being that AKC shows that a
@@ -26,7 +28,7 @@ class Utils {
     if (dobYear > todayYear || (dobYear == todayYear && dobMonth > todayMonth) ||
         (dobYear == todayYear && dobMonth == todayMonth && dobDay > todayDay)) {
       alert('Your Dog is from the future?...try again pls :)')
-      return 0;
+      return 0
     }
     else {
       var humanYears = todayYear - dobYear
@@ -74,6 +76,7 @@ class Utils {
 
   }
 
+  //Use Unsplash API to get random pic URL
   static async unsplashRandomPic(query, count, width, height) {
     //Gets a random image from unsplash and returns the url.
     // https://api.unsplash.com/photos/random/?count=1&query=dogs&w=200&h=200&orientation=squarish&client_id=e2a508587e823dd93b8031994e2420ed1a539716b750ed67e78b3caa09db950f
@@ -123,4 +126,59 @@ class Utils {
 
   }
 
-}
+  //Get average of any amount of arguments
+  static getAverage(...args) {
+    var avg = 0
+    args.forEach((arg) => {
+      avg += arg
+    })
+    avg = avg / args.length
+    console.log(avg)
+    return avg
+  }
+
+  //Convert inches to feet and inches
+  static feetAndInches(inches) {
+    //returns an array where [0] is the feet and [1] is the remaining inches
+    var remainingInches = inches % 12
+    var feet = (inches - remainingInches) / 12
+
+    return [feet, remainingInches]
+  }
+
+  //Convert feet w/ or w/out decimal to inches
+  static feetToInches(feet){
+    var footString = feet.toString();
+    if(footString.includes('.')){
+      console.log('Value Entered: ' + feet)
+      var partialFoot =  footString.slice(footString.indexOf('.')+1)
+      console.log('partial foot: ' + partialFoot)
+      var partialFootInches = () => {
+        if(partialFoot.length == 1)
+          return Math.ceil((partialFoot * 12)/10)
+        else if(partialFoot.length == 2)
+          return Math.ceil((partialFoot *12)/100)
+        else{
+          return Math.ceil((partialFoot.slice(0,2) * 12)/100)
+        }
+      }
+      console.log('partial foot inches: ' + partialFootInches())
+      var wholeFeet =  feet - footString.slice(footString.indexOf('.'))
+      console.log('Whole Feet: ' + wholeFeet)
+      var inches = wholeFeet * 12
+      console.log('inches from whole feet: ' + inches)
+
+      return inches + partialFootInches()
+    }
+    else{
+      return feet * 12
+    }
+
+
+
+
+
+
+  }
+
+}//END OF UTILS

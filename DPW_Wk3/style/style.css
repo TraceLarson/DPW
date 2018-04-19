@@ -1,0 +1,59 @@
+html{
+    font-family: Verdana, Arial, sans-serif;
+}
+body{
+    background: url("../images/patrick-hendry-221863-unsplash.jpg") center / cover no-repeat;
+}
+header, footer{
+    text-align: center;
+}
+h1{
+    color: #f2f2f2;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+}
+
+#form-section{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    justify-content: start;
+}
+form{
+    grid-column: 5/9;
+
+    background: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 200px auto;
+}
+fieldset{
+    grid-column: 2/6;
+    border: none;
+
+    display: grid;
+    grid-template-columns: 1fr;
+}
+fieldset, input, select{
+    margin: 0 0 10px 0;
+    padding-top: 0;
+}
+label{
+    font-size: 10px;
+    margin: 10px 0 0 0;
+}
+button{
+    background: lightblue;
+    border: none;
+    margin-bottom: 5px;
+    grid-column: 3/5;
+    grid-row: 2/2;
+}
+
+#dog-display{
+    text-align: center;
+    color: #f2f2f2;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
