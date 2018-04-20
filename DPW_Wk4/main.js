@@ -1,10 +1,12 @@
 window.addEventListener('load', function(){
-  console.log(Utils.feetToInches(24))
+  //Instantiate Singleton
+  var assignment = Assignment.getInstance()
 })
 
 class Assignment{
   constructor(){
     console.log('Singleton created')
+    this.controller = new Controller()
   }
   static getInstance(){
     if(!Assignment._instance){
