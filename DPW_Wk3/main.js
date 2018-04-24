@@ -28,6 +28,7 @@ class DataObject{
     this.dob = dob;
     this.size = size;
 
+
   }
 }
 
@@ -36,6 +37,8 @@ class Controller{
     console.log('Controller Created');
     this.model = new Model();
     this.view = new View();
+
+    const created = new Event('created')
 
     //code to retrieve data
     document.getElementById('submit-button').addEventListener('click', (e)=>{
@@ -46,6 +49,8 @@ class Controller{
       var size = document.getElementById('size-input').value;
 
       var newDog = new DataObject(name, dob, size);
+      newDog.addEventListener('created', createDog)
+      newDog.dispatchEvent(created)
       var dogAge = this.model.getDogYears(newDog);
       this.view.showData(newDog, dogAge);
 
@@ -76,4 +81,8 @@ class View{
     var dataDisplay = `<h3>Dog Name: ${data.name}</h3><p>Size: ${data.size}</p><p>DOB:${data.dob}</p><p>Your Dog's age in dog years is ${product}</p>`
     document.getElementById('dog-display').innerHTML = dataDisplay;
   }
+}
+
+function createDog(e){
+  console.log(`Dog Name: ${e.name} Dog DOB: ${e.dob} Dog Size: ${e.size}`)
 }
