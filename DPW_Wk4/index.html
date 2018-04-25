@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style/style.css"/>
-    <title>Title</title>
+    <title>PigTempFoot Converter</title>
 </head>
 <body>
-    <header></header>
-    <section>
+    <header>
+        <h1>PigTempFoot Converter</h1>
+    </header>
+    <section id="data-input">
         <form>
             <fieldset>
-                <label></label>
-                <input/>
-                <label></label>
-                <input/>
-                <label></label>
-                <input/>
+                <label>Name: </label>
+                <input type="text" placeholder="to Piglatin"/>
+                <label>Temp F&deg: </label>
+                <input type="number" placeholder="to Celsius degrees"/>
+                <label>Inches: </label>
+                <input type="number" placeholder="to feet and inches"/>
             </fieldset>
-            <button>SUBMIT</button>
+            <button id="submit-button">SUBMIT</button>
         </form>
+    </section>
+    <section id="data-display">
+        <div id="name-display"></div>
+        <div id="temp-display"></div>
+        <div id="length-display"></div>
     </section>
 
 

@@ -181,4 +181,35 @@ class Utils {
 
   }
 
+  //Convert fahrenheit degrees to celsius degrees
+  static fahrenheitToCelsius(degrees){
+    return parseFloat((degrees - 32) / 1.8).toFixed(1)
+  }
+
+  //Convert celsius degrees to fahrenheit degrees
+  static celciusToFahrenheit(degrees){
+    return parseFloat(degrees * 1.8 + 32).toFixed(1)
+  }
+
+  //Converts string to piglatin
+  static toPigLatin(word){
+    word = word.toLowerCase()
+    let array = word.split('')
+    let vowels = ['a','e','i','o','u']
+    let pig = ''
+    for (let i = 0; i < vowels.length-1; i++){
+      for(let y = 0; y < word.length-1; y++){
+        if(word[y] == vowels[i]){
+          for(let x = y; x < word.length; x++){
+            pig = pig + word[x]
+          }
+          for(let n = 0; n < y; n++){
+            pig = pig + word[n]
+          }
+          return pig + 'ay'
+        }
+      }
+    }
+  }
+
 }//END OF UTILS
