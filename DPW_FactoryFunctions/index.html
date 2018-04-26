@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css"/>
+    <title>Power Ranger Factory</title>
+</head>
+<body>
+    <header><h1>Power Ranger Factory</h1></header>
+    <section id="add-rangers">
+        <form>
+            <fieldset id="ranger-info">
+                <label>Name: </label>
+                <input/>
+                <label>Weapon: </label>
+                <input/>
+                <label>Zord: </label>
+                <input/>
+            </fieldset>
+            <fieldset id="ranger-color">
+                <label>Red</label>
+                <input type="radio" name="color" value="red"/>
+                <label>Yellow</label>
+                <input type="radio" name="color" value="yellow"/>
+                <label>Blue</label>
+                <input type="radio" name="color" value="blue"/>
+                <label>Black</label>
+                <input type="radio" name="color" value="black"/>
+                <label>Pink</label>
+                <input type="radio" name="color" value="pink"/>
+            </fieldset>
+            <button id="add-button">Add Team Member</button>
+            <button id="display-button">Display Info</button>
+        </form>
+    </section>
+
+    <section id="display-rangers"></section>
+
+
+    <script src="utils.js" type="text/javascript"></script>
+    <script src="concreteclasses.js" type="text/javascript"></script>
+    <script src="factory.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+</html>
